@@ -70,9 +70,10 @@ router.get("/getsingle/:id", async (req, res) => {
 })
 
 
-router.delete("/deletesingle/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
     try {
-        let deleteSingle = await User.findByIdAndDelete(req.params.id);
+        //const { id } = req.params;
+        const deleteSingle = await User.findByIdAndDelete(req.params.id);
         res.status(200).json({
             deleteSingle
         })
@@ -80,6 +81,16 @@ router.delete("/deletesingle/:id", async (req, res) => {
         res.status(500).json({rror:`error`})
     }
 
+})
+
+router.patch("/updateuser/:id", async (req, res) => {
+    try {
+        const updateUser = await User.findByIdAndUpdate({ _id: params.id }, req.body, { new: true })
+        updateUser
+        console.log(updateUser);
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 /*router
